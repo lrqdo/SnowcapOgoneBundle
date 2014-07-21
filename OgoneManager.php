@@ -180,18 +180,17 @@ class OgoneManager
         $shaComposer->addParameterFilter(new ShaOutParameterFilter); //optional
 
         if ($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful()) {
+            $this->logger->info('Ogone payment success', $parameters);
+
             $event = new OgoneEvent($parameters);
             $this->eventDispatcher->dispatch(OgoneEvents::SUCCESS, $event);
 
-            // handle payment confirmation
-            $this->logger->info('Ogone payment success');
-
             return true;
         } else {
+            $this->logger->warn('Ogone payment failure', $parameters);
+
             $event = new OgoneEvent($parameters);
             $this->eventDispatcher->dispatch(OgoneEvents::ERROR, $event);
-
-            $this->logger->warn('Ogone payment failure', $parameters);
         }
 
         return false;
