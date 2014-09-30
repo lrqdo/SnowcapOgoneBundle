@@ -6,10 +6,13 @@ parameters:
     snowcap_ogone.options: ~
     snowcap_ogone.api.user_id: ~
     snowcap_ogone.api.password: ~
+    snowcap_ogone.class: Snowcap\OgoneBundle\OgoneManager
+    snowcap_ogone.form_generator.class: Snowcap\OgoneBundle\FormGenerator\SimpleFormGenerator
+    snowcap_ogone.direct_link.class: Snowcap\OgoneBundle\OgoneDirectLink
 
 services:
     snowcap_ogone:
-        class: Snowcap\OgoneBundle\OgoneManager
+        class: %snowcap_ogone.class%
         arguments:
             - @event_dispatcher
             - @logger
@@ -21,14 +24,14 @@ services:
             - %snowcap_ogone.options%
 
     snowcap_ogone.form_generator:
-        class: Snowcap\OgoneBundle\FormGenerator\SimpleFormGenerator
+        class: %snowcap_ogone.form_generator.class%
         arguments:
             - @twig
             - %kernel.root_dir%
         private: true
 
     snowcap_ogone.direct_link:
-        class: Snowcap\OgoneBundle\OgoneDirectLink
+        class: %snowcap_ogone.direct_link.class%
         arguments:
             - @logger
             - %snowcap_ogone.pspid%
