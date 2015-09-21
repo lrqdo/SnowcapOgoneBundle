@@ -32,7 +32,7 @@
         "symfony/framework-bundle": ">=2.2",
         "symfony/monolog-bundle": ">=2.2",
         "kriswallsmith/buzz": ">=0.5",
-        "marlon-be/marlon-ogone": "dev-master"
+        "marlon-be/marlon-ogone": "~2.0"
     },
     "autoload": {
         "psr-0": { "Snowcap\\OgoneBundle": "" }
