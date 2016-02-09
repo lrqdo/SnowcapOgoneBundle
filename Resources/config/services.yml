@@ -14,9 +14,9 @@ services:
     snowcap_ogone:
         class: %snowcap_ogone.class%
         arguments:
-            - @event_dispatcher
-            - @logger
-            - @snowcap_ogone.form_generator
+            - '@event_dispatcher'
+            - '@logger'
+            - '@snowcap_ogone.form_generator'
             - %snowcap_ogone.pspid%
             - %snowcap_ogone.environment%
             - %snowcap_ogone.sha_in%
@@ -26,14 +26,14 @@ services:
     snowcap_ogone.form_generator:
         class: %snowcap_ogone.form_generator.class%
         arguments:
-            - @twig
+            - '@twig'
             - %kernel.root_dir%
         private: true
 
     snowcap_ogone.direct_link:
         class: %snowcap_ogone.direct_link.class%
         arguments:
-            - @logger
+            - '@logger'
             - %snowcap_ogone.pspid%
             - %snowcap_ogone.environment%
             - %snowcap_ogone.sha_in%
